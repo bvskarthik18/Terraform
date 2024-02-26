@@ -17,7 +17,7 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
-#Creates Public Route Table for first subnet
+#Creates Public Route Table
 
 resource "aws_route_table" "public_rt" {
   vpc_id = var.vpc_id
@@ -32,7 +32,7 @@ resource "aws_route_table" "public_rt" {
   }
 }
 
-# creates Route Table Association
+# creates Route Table Association for first subnet
 
 resource "aws_route_table_association" "rta" {
     subnet_id = aws_subnet.my_subnets[keys(aws_subnet.my_subnets)[0]].id
