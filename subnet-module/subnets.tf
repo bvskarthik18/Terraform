@@ -17,7 +17,7 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
-#Creates Public Route Table
+#Creates Public Route Table for first subnet
 
 resource "aws_route_table" "public_rt" {
   vpc_id = var.vpc_id
