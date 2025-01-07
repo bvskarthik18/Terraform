@@ -14,7 +14,7 @@ The code is modularized using Terraform, making it reusable and easy to manage. 
 ## **Project Structure**
 
 Here’s a quick overview of the project structure:
-
+```ruby
 .
 ├── main.tf                # Main file that ties the modules together
 ├── README.md              # Documentation of the setup
@@ -24,7 +24,7 @@ Here’s a quick overview of the project structure:
 ├── vpc-module/            # Module to create VPC
 │   ├── vpc.tf             # Defines the VPC
 │   └── variables.tf       # Variables used by the VPC module
-
+```
 
 
 In this tutorial, we'll focus on each of these files, and explain their purpose in detail.
