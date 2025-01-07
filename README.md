@@ -15,7 +15,16 @@ The code is modularized using Terraform, making it reusable and easy to manage. 
 
 Here’s a quick overview of the project structure:
 
-. ├── main.tf # Main file that ties the modules together ├── README.md # Documentation of the setup ├── subnet-module/ # Module to create subnets │ ├── subnets.tf # Defines subnets, internet gateway, and route table │ └── variables.tf # Variables used by the subnet module ├── vpc-module/ # Module to create VPC │ ├── vpc.tf # Defines the VPC │ └── variables.tf # Variables used by the VPC module
+.
+├── main.tf                # Main file that ties the modules together
+├── README.md              # Documentation of the setup
+├── subnet-module/         # Module to create subnets
+│   ├── subnets.tf         # Defines subnets, internet gateway, and route table
+│   └── variables.tf       # Variables used by the subnet module
+├── vpc-module/            # Module to create VPC
+│   ├── vpc.tf             # Defines the VPC
+│   └── variables.tf       # Variables used by the VPC module
+
 
 
 In this tutorial, we'll focus on each of these files, and explain their purpose in detail.
@@ -42,9 +51,9 @@ output "my_vpc_id" {
 }
 ```
 
-cidr_block: The IP range for the VPC, defined by the variable cidr.
-tags: Assigns a Name tag to the VPC using the vpc_name variable.
-Output: The VPC ID is exposed to be used in other modules.
+- cidr_block: The IP range for the VPC, defined by the variable cidr.
+- tags: Assigns a Name tag to the VPC using the vpc_name variable.
+- Output: The VPC ID is exposed to be used in other modules.
 
 File: vpc-module/variables.tf
 Here, we define the input variables that will be used in the VPC creation.
@@ -59,5 +68,10 @@ variable "vpc_name" {
 }
 ```
 
-cidr: The default CIDR block for the VPC.
-vpc_name: The name to assign to the VPC.
+- cidr: The default CIDR block for the VPC.
+- vpc_name: The name to assign to the VPC.
+
+Step 2: Defining the Subnet Module
+File: subnet-module/subnets.tf
+This file defines the creation of multiple subnets. The module is flexible and allows you to create subnets in different Availability Zones.
+
