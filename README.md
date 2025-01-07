@@ -51,11 +51,11 @@ output "my_vpc_id" {
 }
 ```
 
-- cidr_block: The IP range for the VPC, defined by the variable cidr.
-- tags: Assigns a Name tag to the VPC using the vpc_name variable.
-- Output: The VPC ID is exposed to be used in other modules.
+- `cidr_block`: The IP range for the VPC, defined by the variable cidr.
+- `tags`: Assigns a Name tag to the VPC using the `vpc_name` variable.
+- `Output`: The VPC ID is exposed to be used in other modules.
 
-File: vpc-module/variables.tf
+## **File: `vpc-module/variables.tf`**
 Here, we define the input variables that will be used in the VPC creation.
 
 ```hcl
@@ -68,11 +68,11 @@ variable "vpc_name" {
 }
 ```
 
-- cidr: The default CIDR block for the VPC.
-- vpc_name: The name to assign to the VPC.
+- `cidr`: The default CIDR block for the VPC.
+- `vpc_name`: The name to assign to the VPC.
 
 ## **Step 2: Defining the Subnet Module**
-## **File: subnet-module/subnets.tf**
+## **File: `subnet-module/subnets.tf`**
 This file defines the creation of multiple subnets. The module is flexible and allows you to create subnets in different Availability Zones.
 
 ```hcl
@@ -112,12 +112,12 @@ resource "aws_route_table_association" "rta" {
 }
 
 ```
-- Subnets: This uses for_each to iterate over the subnets variable and create a subnet for each entry.
-- Internet Gateway: We create an Internet Gateway (IGW) and associate it with the VPC.
-- Route Table: A public route table is created, with a default route to the IGW.
-- Route Table Association: The first subnet is associated with the public route table, allowing internet access.
+- `Subnets`: This uses for_each to iterate over the subnets variable and create a subnet for each entry.
+- `Internet Gateway`: We create an Internet Gateway (IGW) and associate it with the VPC.
+- `Route Table`: A public route table is created, with a default route to the IGW.
+- `Route Table Association`: The first subnet is associated with the public route table, allowing internet access.
 
-## **File: subnet-module/variables.tf**
+## **File: `subnet-module/variables.tf`**
 The variables defined in variables.tf are used to pass the necessary data into the module.
 
 ```hcl
@@ -126,11 +126,11 @@ variable "vpc_id" {}
 variable "subnets" {}
 
 ```
-- vpc_id: The ID of the VPC to which these subnets will be attached.
-- subnets: A map containing the subnet details like CIDR block and Availability Zone.
+- `vpc_id`: The ID of the VPC to which these subnets will be attached.
+- `subnets`: A map containing the subnet details like CIDR block and Availability Zone.
 
 ## **Step 3: Main Terraform Configuration**
-## **File: main.tf**
+## **File: `main.tf`**
 In the main.tf file, we instantiate both the VPC and the Subnet modules. This ties everything together and passes necessary inputs between the modules.
 ```hcl
 module "aws_vpc" {
@@ -157,8 +157,8 @@ module "aws_subnet" {
 }
 
 ```
-- VPC Module: The aws_vpc module is called to create the VPC, and we output its ID to pass it to the subnet-module.
-- Subnet Module: The aws_subnet module is called to create the subnets. The subnets map contains details about each subnet, such as CIDR block and AZ.
+- `VPC Module`: The aws_vpc module is called to create the VPC, and we output its ID to pass it to the subnet-module.
+- `Subnet Module`: The aws_subnet module is called to create the subnets. The subnets map contains details about each subnet, such as CIDR block and AZ.
 
 ## **Step 4: Running Terraform**
 Once you have all the files in place, follow these steps to apply the configuration:
@@ -178,7 +178,7 @@ terraform validate
  
 terraform apply
 ```
-Terraform will show a plan with all the changes that will be made. If everything looks good, type 'yes' to proceed with the creation of the resources.
+Terraform will show a plan with all the changes that will be made. If everything looks good, type `yes` to proceed with the creation of the resources.
 
 ## **Step 5: Conclusion**
 In this blog post, we demonstrated how to create a reusable Terraform configuration that defines a VPC and multiple subnets across different Availability Zones. By organizing the code into modules, we made the infrastructure scalable and easy to maintain.
