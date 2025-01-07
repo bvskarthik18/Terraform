@@ -175,8 +175,7 @@ terraform validate
 ```
 3. Apply the configuration:
 ```bash
- 
-terraform apply
+ terraform apply
 ```
 Terraform will show a plan with all the changes that will be made. If everything looks good, type `yes` to proceed with the creation of the resources.
 
